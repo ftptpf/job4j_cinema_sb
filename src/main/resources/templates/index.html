@@ -33,12 +33,12 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Выбрать фильм
+                Фильмы
             </div>
             <div class="card-body">
                 <form th:action="@{/session}" method="post">
                     <div class="form-group">
-                        <label for="filmSession">Выберите фильм:</label>
+                        <label for="filmSession">Выберите фильм</label>
                         <select class="form-control" id="filmSession" name="filmSession">
                             <option th:each="filmSession : ${sessions}" th:value="${filmSession}" th:text="${filmSession.name}"></option>
                         </select>
