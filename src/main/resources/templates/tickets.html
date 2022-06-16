@@ -33,17 +33,51 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Выбрать фильм
+                Кинотеатр.
             </div>
             <div class="card-body">
-                <form th:action="@{/session}" method="post">
-                    <div class="form-group">
-                        <label for="filmSession">Выберите фильм:</label>
-                        <select class="form-control" id="filmSession" name="filmSession">
-                            <option th:each="filmSession : ${sessions}" th:value="${filmSession}" th:text="${filmSession.name}"></option>
-                        </select>
+                <form th:action="@{/user}" method="post">
+                    <input type="hidden" name="id" value="0">
+
+                    <div>
+                        <label>Выберите ряд и место:</label>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Ряд / Место</th>
+                                <th scope="col">1</th>
+                                <th scope="col">2</th>
+                                <th scope="col">3</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>
+                                    <input type="radio">
+                                    <label>Ряд 1 Место 1</label>
+                                </td>
+                                <td>Ряд 1 Место 2</td>
+                                <td>Ряд 1 Место 3</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Ряд 2 Место 1</td>
+                                <td>Ряд 2 Место 2</td>
+                                <td>Ряд 2 Место 3</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Ряд 3 Место 1</td>
+                                <td>Ряд 3 Место 2</td>
+                                <td>Ряд 3 Место 3</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <button type="submit" class="btn btn-primary">Перейти к выбору места</button>
+
+                    <button type="submit" class="btn btn-primary">Перейти к оформлению</button>
+                    <button type="submit" class="btn btn-primary" formaction="index.hml">Вернуться на страницу выбора фильма</button>
                 </form>
             </div>
         </div>
