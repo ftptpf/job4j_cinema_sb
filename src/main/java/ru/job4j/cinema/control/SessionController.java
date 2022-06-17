@@ -17,9 +17,7 @@ public class SessionController {
     }
     @PostMapping("/session")
     public String sessionId(@ModelAttribute Session session, Model model) {
-
-
-
+        model.addAttribute("filmSession", session);
         return "tickets";
 
 
