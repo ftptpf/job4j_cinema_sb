@@ -56,7 +56,9 @@
 
 
                     <button type="submit" class="btn btn-primary">Заказать</button>
-                    <button type="button" class="btn btn-primary" formaction="index.hml">Вернуться на страницу выбора фильма</button>
+                    <a th:href="@{/index}">
+                        <button type="button" class="btn btn-primary">Вернуться на страницу выбора фильма</button>
+                    </a>
                 </form>
             </div>
         </div>

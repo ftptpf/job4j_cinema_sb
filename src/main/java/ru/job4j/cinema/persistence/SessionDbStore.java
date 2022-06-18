@@ -7,6 +7,7 @@ import ru.job4j.cinema.model.Session;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -35,6 +36,23 @@ public class SessionDbStore {
             e.printStackTrace();
         }
         return sessions;
+    }
+
+    public Session findById(int id) {
+        try (Connection cn = pool.getConnection();
+        PreparedStatement ps = cn.prepareStatement("SELECT * FROM sessions WHERE id = ?")) {
+            ps.setInt(1, id);
+            try (ResultSet it = ps.executeQuery()) {
+                if (it.next()) {
+                    return new Session(
+                            it.getInt("id"),
+                            it.getString("name"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

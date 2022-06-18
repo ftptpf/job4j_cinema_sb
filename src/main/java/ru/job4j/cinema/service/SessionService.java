@@ -18,4 +18,8 @@ public class SessionService {
         return store.findAll();
     }
 
+    public Session findById(int id) {
+        return store.findById(id);
+    }
+
 }
