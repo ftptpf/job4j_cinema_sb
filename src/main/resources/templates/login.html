@@ -27,31 +27,28 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/login}">
-                    <span th:text="${user.name}"></span>
-                    <span> | Войти</span>
-                </a>
-                <a class="nav-item nav-link" th:if="${user.name != 'Гость'}" th:href="@{/logout}">
-                    <span th:text="${user.name}"></span>
-                    <span> | Выйти</span>
-                </a>
             </div>
         </div>
     </nav>
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Фильмы
+                Авторизация
             </div>
             <div class="card-body">
-                <form th:action="@{/session}" method="post">
+                <div th:if="${fail}" class="alert alert-danger" role="alert">
+                    Логин или пароль введены неверно!
+                </div>
+                <form th:action="@{/login}" method="POST">
                     <div class="form-group">
-                        <label for="id">Выберите фильм</label>
-                        <select class="form-control" id="id" name="id">
-                            <option th:each="filmSession : ${sessions}" th:value="${filmSession.id}" th:text="${filmSession.name}"></option>
-                        </select>
+                        <label>Почта</label>
+                        <input type="text" class="form-control" name="email">
                     </div>
-                    <button type="submit" class="btn btn-primary">Перейти к выбору места</button>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="text" class="form-control" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Войти</button>
                 </form>
             </div>
         </div>
