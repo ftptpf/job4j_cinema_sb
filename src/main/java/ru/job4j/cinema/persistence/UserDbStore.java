@@ -20,11 +20,12 @@ public class UserDbStore {
     public Optional<User> add(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "INSERT INTO users (username, email, phone) VALUES (?, ?, ?)",
+                     "INSERT INTO users (username, email, phone, password) VALUES (?, ?, ?, ?)",
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, user.getName());
             ps.setString(2, user.getEmail());
             ps.setString(3, user.getPhone());
+            ps.setString(4, user.getPassword());
             ps.execute();
             try (ResultSet it = ps.getGeneratedKeys()) {
                 if (it.next()) {
@@ -37,4 +38,27 @@ public class UserDbStore {
         }
         return Optional.empty();
     }
+
+    public Optional<User> findUserByEmailAndPwd(String email, String password) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?")) {
+            ps.setString(1, email);
+            ps.setString(2, password);
+            try (ResultSet it = ps.executeQuery()) {
+                while (it.next()) {
+                    return Optional.of(new User(
+                            it.getInt("id"),
+                            it.getString("name"),
+                            it.getString("email"),
+                            it.getString("phone")
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
+
 }
