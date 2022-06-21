@@ -5,7 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.cinema.model.Session;
 import ru.job4j.cinema.service.TicketService;
+import ru.job4j.cinema.util.UserUtil;
 
+import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
 @Controller
@@ -17,10 +19,11 @@ public class TicketController {
     }
 
     @GetMapping("/tickets")
-    public String freeTickets(Model model) {
-        Session session = (Session) model.getAttribute("filmSession");
-        int id = Objects.requireNonNull(session).getId();
-        model.addAttribute("sessionTickets", service.findAllSessionTickets(id));
+    public String freeTickets(Model model, HttpSession session) {
+        UserUtil.checkAndSetGuestName(model, session);
+        Session filmSession = (Session) model.getAttribute("filmSession");
+        int id = Objects.requireNonNull(filmSession).getId();
+        model.addAttribute("sessionTickets", service.findSessionTickets(id));
         return "tickets";
     }
 

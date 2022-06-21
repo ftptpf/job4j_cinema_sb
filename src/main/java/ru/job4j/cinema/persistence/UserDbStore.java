@@ -48,7 +48,7 @@ public class UserDbStore {
                 while (it.next()) {
                     return Optional.of(new User(
                             it.getInt("id"),
-                            it.getString("name"),
+                            it.getString("username"),
                             it.getString("email"),
                             it.getString("phone")
                     ));

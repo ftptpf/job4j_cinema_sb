@@ -19,8 +19,8 @@ public class TicketService {
         return store.add(ticket);
     }
 
-    public Collection<Ticket> findAllSessionTickets(int sessionId) {
-        return store.findAllSessionTickets(sessionId);
+    public Collection<Ticket> findSessionTickets(int sessionId) {
+        return store.findSessionTickets(sessionId);
     }
 
 

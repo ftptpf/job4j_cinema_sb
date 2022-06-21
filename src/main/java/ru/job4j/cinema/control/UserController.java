@@ -26,6 +26,34 @@ public class UserController {
         return "result";
     }
 
+    @GetMapping("/registration")
+    public String getPageRegistration(Model model, HttpSession session) {
+        UserUtil.checkAndSetGuestName(model, session);
+        return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String registration(Model model, @ModelAttribute User user) {
+        Optional<User> regUser = service.add(user);
+        if (regUser.isEmpty()) {
+            model.addAttribute("message", "Пользователь с такой почтой уже существует");
+            return "redirect:/fail";
+        }
+        return "redirect:/success";
+    }
+
+    @GetMapping("/fail")
+    public String failRegistration(Model model, HttpSession session) {
+        UserUtil.checkAndSetGuestName(model, session);
+        return "fail";
+    }
+
+    @GetMapping("/success")
+    public String successRegistration(Model model, HttpSession session) {
+        UserUtil.checkAndSetGuestName(model, session);
+        return "success";
+    }
+
     @GetMapping("/login")
     public String loginPage(Model model, @RequestParam(name = "fail", required = false) Boolean fail, HttpSession session) {
         UserUtil.checkAndSetGuestName(model, session);

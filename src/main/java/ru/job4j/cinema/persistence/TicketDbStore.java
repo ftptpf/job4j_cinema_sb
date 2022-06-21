@@ -42,7 +42,7 @@ public class TicketDbStore {
         return Optional.empty();
     }
 
-    public Collection<Ticket> findAllSessionTickets(int sessionId) {
+    public Collection<Ticket> findSessionTickets(int sessionId) {
         List<Ticket> tickets = new ArrayList<>();
         try (Connection cn = pool.getConnection();
         PreparedStatement ps = cn.prepareStatement("SELECT * FROM ticket WHERE session_id = ? ORDER BY id")) {
