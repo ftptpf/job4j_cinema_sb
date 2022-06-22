@@ -21,10 +21,6 @@ public class UserController {
     public UserController(UserService service) {
         this.service = service;
     }
-    @GetMapping("/result")
-    public String result() {
-        return "result";
-    }
 
     @GetMapping("/registration")
     public String getPageRegistration(Model model, HttpSession session) {
@@ -36,22 +32,13 @@ public class UserController {
     public String registration(Model model, @ModelAttribute User user) {
         Optional<User> regUser = service.add(user);
         if (regUser.isEmpty()) {
-            model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            return "redirect:/fail";
+            model.addAttribute("messageHeader", "Ошибка регистрации");
+            model.addAttribute("message", "Пользователь с такой почтой/телефоном уже существует");
+        } else {
+            model.addAttribute("messageHeader", "Успешная регистрация");
+            model.addAttribute("message", "Пользователь успешно зарегистрирован");
         }
-        return "redirect:/success";
-    }
-
-    @GetMapping("/fail")
-    public String failRegistration(Model model, HttpSession session) {
-        UserUtil.checkAndSetGuestName(model, session);
-        return "fail";
-    }
-
-    @GetMapping("/success")
-    public String successRegistration(Model model, HttpSession session) {
-        UserUtil.checkAndSetGuestName(model, session);
-        return "success";
+        return "registration";
     }
 
     @GetMapping("/login")
