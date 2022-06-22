@@ -32,10 +32,8 @@ public class UserController {
     public String registration(Model model, @ModelAttribute User user) {
         Optional<User> regUser = service.add(user);
         if (regUser.isEmpty()) {
-            model.addAttribute("messageHeader", "Ошибка регистрации");
-            model.addAttribute("message", "Пользователь с такой почтой/телефоном уже существует");
+            model.addAttribute("message", "Ошибка регистрации. Пользователь с такой почтой/телефоном уже существует");
         } else {
-            model.addAttribute("messageHeader", "Успешная регистрация");
             model.addAttribute("message", "Пользователь успешно зарегистрирован");
         }
         return "registration";

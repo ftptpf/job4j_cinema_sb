@@ -40,9 +40,9 @@
         </div>
     </nav>
     <div class="row">
-        <div class="alert alert-danger" role="alert">
-            <div class="card-header" th:text="${messageHeader}"></div>
-            <div th:text="${message}"></div>
+        <div>
+            <div th:if="${message != 'Пользователь успешно зарегистрирован'}" class="alert alert-danger" role="alert" th:text="${message}"></div>
+            <div th:if="${message == 'Пользователь успешно зарегистрирован'}" class="alert alert-success" role="alert" th:text="${message}"></div>
         </div>
     </div>
     <div class="row">
