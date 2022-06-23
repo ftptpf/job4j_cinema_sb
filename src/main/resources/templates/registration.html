@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" th:href="@{/index}">Выбор фильма</a>
-                <a class="nav-item nav-link" href="#">Регистрация <span class="sr-only">(current)</a>
+                <a class="nav-item nav-link" href="#">Регистрация <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/login}">
                     <span th:text="${user.name}"></span>
                     <span> | Войти</span>
@@ -41,7 +41,7 @@
     </nav>
     <div class="row">
         <div>
-            <div th:if="${message != 'Пользователь успешно зарегистрирован'}" class="alert alert-danger" role="alert" th:text="${message}"></div>
+            <div th:if="${message != null and message != 'Пользователь успешно зарегистрирован'}" class="alert alert-danger" role="alert" th:text="${message}"></div>
             <div th:if="${message == 'Пользователь успешно зарегистрирован'}" class="alert alert-success" role="alert" th:text="${message}"></div>
         </div>
     </div>

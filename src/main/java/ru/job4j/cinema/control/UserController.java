@@ -23,19 +23,20 @@ public class UserController {
     }
 
     @GetMapping("/registration")
-    public String getPageRegistration(Model model, HttpSession session) {
+    public String registrationPage(Model model, HttpSession session) {
         UserUtil.checkAndSetGuestName(model, session);
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String registration(Model model, @ModelAttribute User user) {
+    public String registration(Model model, @ModelAttribute User user, HttpSession session) {
         Optional<User> regUser = service.add(user);
         if (regUser.isEmpty()) {
             model.addAttribute("message", "Ошибка регистрации. Пользователь с такой почтой/телефоном уже существует");
         } else {
             model.addAttribute("message", "Пользователь успешно зарегистрирован");
         }
+        UserUtil.checkAndSetGuestName(model, session);
         return "registration";
     }
 

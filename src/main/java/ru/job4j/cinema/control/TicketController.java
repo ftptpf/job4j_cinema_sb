@@ -18,13 +18,13 @@ public class TicketController {
         this.service = service;
     }
 
-    @GetMapping("/tickets")
+    @GetMapping("/ticket")
     public String freeTickets(Model model, HttpSession session) {
         UserUtil.checkAndSetGuestName(model, session);
         Session filmSession = (Session) model.getAttribute("filmSession");
         int id = Objects.requireNonNull(filmSession).getId();
         model.addAttribute("sessionTickets", service.findSessionTickets(id));
-        return "tickets";
+        return "ticket";
     }
 
 }

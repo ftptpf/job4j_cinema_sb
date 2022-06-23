@@ -26,7 +26,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/index}">Выбор фильма</a>
+                <a class="nav-item nav-link" href="#">Выбор фильма  <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/registration}">Регистрация</a>
                 <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/login}">
                     <span th:text="${user.name}"></span>
