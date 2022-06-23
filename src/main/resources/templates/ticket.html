@@ -46,7 +46,7 @@
             </div>
             <div class="card-body">
                 <form th:action="@{/result}" method="post">
-                    <input type="hidden" name="id" value="0">
+                    <input type="hidden" name="sessionId" th:value="${filmSession.id}">
                     <div>
                         <label>Выберите ряд и место:</label>
                         <table class="table">
@@ -62,7 +62,7 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <span th:if="${filmSession == null}"><input type="radio"></span>
+                                    <span th:if="${sessionTickets != null}"><input type="radio"></span>
                                     <label>Ряд 1 Место 1</label>
                                 </td>
                                 <td>Ряд 1 Место 2</td>

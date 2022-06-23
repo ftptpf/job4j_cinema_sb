@@ -46,6 +46,7 @@ public class UserController {
         model.addAttribute("fail", fail != null);
         return "login";
     }
+
     @PostMapping("/login")
     public String login(@ModelAttribute User user, HttpServletRequest req) {
         Optional<User> userDb = service.findUserByEmailAndPwd(
