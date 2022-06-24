@@ -62,28 +62,69 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <span th:if="${sessionTickets != null}"><input type="radio"></span>
+                                    <span th:if="${orderedTicketsArray[1][1] == false}"><input type="radio"></span>
                                     <label>Ряд 1 Место 1</label>
+                                    <input type="hidden" name="row" value="1">
+                                    <input type="hidden" name="cell" value="1">
                                 </td>
-                                <td>Ряд 1 Место 2</td>
-                                <td>Ряд 1 Место 3</td>
+                                <td>
+                                    <span th:if="${orderedTicketsArray[1][2] == false}"><input type="radio"></span>
+                                    <label>Ряд 1 Место 2</label>
+                                    <input type="hidden" name="row" value="1">
+                                    <input type="hidden" name="cell" value="2">
+                                </td>
+                                <td>
+                                    <span th:if="${orderedTicketsArray[1][3] == false}"><input type="radio"></span>
+                                    <label>Ряд 1 Место 3</label>
+                                    <input type="hidden" name="row" value="1">
+                                    <input type="hidden" name="cell" value="3">
+                                </td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Ряд 2 Место 1</td>
-                                <td>Ряд 2 Место 2</td>
-                                <td>Ряд 2 Место 3</td>
+                                <td>
+                                    <span th:if="${orderedTicketsArray[2][1] == false}"><input type="radio"></span>
+                                    <label>Ряд 2 Место 1</label>
+                                    <input type="hidden" name="row" value="2">
+                                    <input type="hidden" name="cell" value="1">
+                                </td>
+                                <td>
+                                    <span th:if="${orderedTicketsArray[2][2] == false}"><input type="radio"></span>
+                                    <label>Ряд 2 Место 2</label>
+                                    <input type="hidden" name="row" value="2">
+                                    <input type="hidden" name="cell" value="2">
+                                </td>
+                                <td>
+                                    <span th:if="${orderedTicketsArray[2][3] == false}"><input type="radio"></span>
+                                    <label>Ряд 2 Место 3</label>
+                                    <input type="hidden" name="row" value="2">
+                                    <input type="hidden" name="cell" value="3">
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>Ряд 3 Место 1</td>
-                                <td>Ряд 3 Место 2</td>
-                                <td>Ряд 3 Место 3</td>
+                                <td>
+                                    <span th:if="${orderedTicketsArray[3][1] == false}"><input type="radio"></span>
+                                    <label>Ряд 3 Место 1</label>
+                                    <input type="hidden" name="row" value="3">
+                                    <input type="hidden" name="cell" value="1">
+                                </td>
+                                <td>
+                                    <span th:if="${orderedTicketsArray[3][2] == false}"><input type="radio"></span>
+                                    <label>Ряд 3 Место 2</label>
+                                    <input type="hidden" name="row" value="3">
+                                    <input type="hidden" name="cell" value="2">
+                                </td>
+                                <td>
+                                    <span th:if="${orderedTicketsArray[3][3] == false}"><input type="radio"></span>
+                                    <label>Ряд 3 Место 3</label>
+                                    <input type="hidden" name="row" value="3">
+                                    <input type="hidden" name="cell" value="3">
+                                </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <input type="hidden" name="userId" value="0">
+                    <input type="hidden" name="userId" th:value="${user.id}">
 
                     <button type="submit" class="btn btn-primary">Перейти к оформлению</button>
                     <a th:href="@{/index}">

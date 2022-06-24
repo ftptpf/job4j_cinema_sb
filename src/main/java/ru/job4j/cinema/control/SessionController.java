@@ -25,7 +25,7 @@ public class SessionController {
         int id = Integer.parseInt(req.getParameter("id"));
         Session sessionWithName = service.findById(id);
         model.addAttribute("filmSession", sessionWithName);
-
+        model.addAttribute("orderedTicketsArray", service.orderedTickets(id));
         UserUtil.checkAndSetGuestName(model, session);
         return "ticket";
     }
