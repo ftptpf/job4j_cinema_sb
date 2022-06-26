@@ -22,6 +22,4 @@ public class TicketService {
     public Collection<Ticket> findSessionTickets(int sessionId) {
         return store.findSessionTickets(sessionId);
     }
-
-
 }

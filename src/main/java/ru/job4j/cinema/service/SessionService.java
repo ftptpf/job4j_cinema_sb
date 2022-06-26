@@ -1,11 +1,9 @@
 package ru.job4j.cinema.service;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.model.Session;
 import ru.job4j.cinema.model.Ticket;
 import ru.job4j.cinema.persistence.SessionDbStore;
-import ru.job4j.cinema.persistence.TicketDbStore;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,10 +11,11 @@ import java.util.List;
 @Service
 public class SessionService {
     private final SessionDbStore store;
-    private final TicketService service = new TicketService(new TicketDbStore(new BasicDataSource()));
+    private final TicketService service;
 
-    public SessionService(SessionDbStore store) {
+    public SessionService(SessionDbStore store, TicketService service) {
         this.store = store;
+        this.service = service;
     }
 
     public Collection<Session> findAll() {
@@ -37,5 +36,4 @@ public class SessionService {
         }
         return result;
     }
-
 }

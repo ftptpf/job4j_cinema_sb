@@ -59,6 +59,4 @@ public class UserDbStore {
         }
         return Optional.empty();
     }
-
-
 }

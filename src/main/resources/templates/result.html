@@ -40,19 +40,30 @@
         </div>
     </nav>
     <div class="row">
+        <div>
+            <div th:if="${message != null and message != 'Операция бронирования билета прошла успешно'}" class="alert alert-danger" role="alert" th:text="${message}"></div>
+            <div th:if="${message == 'Операция бронирования билета прошла успешно'}" class="alert alert-success" role="alert" th:text="${message}"></div>
+        </div>
+    </div>
+    <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
                 Кинотеатр.
             </div>
             <div class="card-body">
-                <form th:action="@{/orderTiket}" method="post">
-
-
-                    <button type="submit" class="btn btn-primary">Перейти к оформлению</button>
-                    <a th:href="@{/index}">
-                        <button type="button" class="btn btn-primary">Вернуться на страницу выбора фильма</button>
-                    </a>
-                </form>
+                <span th:if="${message == 'Операция бронирования билета прошла успешно'}">
+                    <span th:text="${user.name}">Имя</span>, вы забронировали билет на фильм <span th:text="${film.name}"></span>,
+                    ряд <span th:text="${ticket.row}"></span>, место <span th:text="${ticket.cell}"></span><br>
+                    В ближайшее время мы свяжемся с вами для подтверждения брони.<br>
+                    Так же вы можете вернуться на начальную страницу, выбрать и забронировать другие билеты.<br>
+                </span>
+                <span th:if="${message != null and message != 'Операция бронирования билета прошла успешно'}">
+                    К сожалению, пока вы оформляли билет - его уже кто-то купил. Попробуйте выбрать другой свободный билет.<br>
+                    Воспользуйтесь кнопкой ниже для возврата в начало выбора.<br>
+                </span>
+                <a th:href="@{/index}">
+                    <button type="button" class="btn btn-primary">Вернуться на страницу выбора фильма</button>
+                </a>
             </div>
         </div>
     </div>
