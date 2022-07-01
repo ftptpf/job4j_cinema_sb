@@ -9,6 +9,7 @@ import ru.job4j.cinema.util.UserUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 public class SessionController {
@@ -22,8 +23,13 @@ public class SessionController {
     @PostMapping("/session")
     public String sessionId(HttpServletRequest req, Model model, HttpSession session) {
         int id = Integer.parseInt(req.getParameter("id"));
-        Session sessionWithName = service.findById(id);
-        model.addAttribute("filmSession", sessionWithName);
+        Optional<Session> sessionWithName = service.findById(id);
+        if (sessionWithName.isEmpty()) {
+            model.addAttribute("filmSession", new Session());
+            model.addAttribute("message", "Ошибка программы при получении информации о фильме из базы данных");
+        } else {
+            model.addAttribute("filmSession", sessionWithName.get());
+        }
         model.addAttribute("orderedTicketsArray", service.orderedTickets(id));
         UserUtil.checkAndSetGuestName(model, session);
         return "ticket";

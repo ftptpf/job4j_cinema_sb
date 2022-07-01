@@ -40,6 +40,11 @@
         </div>
     </nav>
     <div class="row">
+        <div>
+            <div th:if="${filmSession.id == 0}" class="alert alert-danger" role="alert" th:text="${message}"></div>
+        </div>
+    </div>
+    <div th:if="${filmSession.id != 0}"  class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
                 <span th:text="${filmSession.name}"/>.

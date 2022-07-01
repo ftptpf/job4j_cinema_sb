@@ -7,9 +7,13 @@ import ru.job4j.cinema.persistence.SessionDbStore;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SessionService {
+    private static final int ROW = 4;
+    private static final int CELL = 4;
+
     private final SessionDbStore store;
     private final TicketService service;
 
@@ -22,12 +26,12 @@ public class SessionService {
         return store.findAll();
     }
 
-    public Session findById(int id) {
+    public Optional<Session> findById(int id) {
         return store.findById(id);
     }
 
     public boolean[][] orderedTickets(int id) {
-        boolean[][] result = new boolean[4][4];
+        boolean[][] result = new boolean[ROW][CELL];
         List<Ticket> ticketList = (List<Ticket>) service.findSessionTickets(id);
         for (Ticket ticket : ticketList) {
             int row = ticket.getRow();
